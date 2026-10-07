@@ -1,5 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const demoNow = process.env.DEMO_NOW ?? "2026-10-07T10:00:00Z";
+
 export default defineConfig({
   testDir: "./tests/e2e",
   fullyParallel: true,
@@ -7,15 +9,20 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? "github" : "list",
   use: {
-    baseURL: "http://127.0.0.1:3000",
+    baseURL: "http://localhost:3000",
     trace: "on-first-retry",
   },
   projects: [
-    { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+    { name: "desktop-chromium", use: { ...devices["Desktop Chrome"] } },
+    { name: "mobile-chromium", use: { ...devices["Pixel 5"] } },
   ],
   webServer: {
     command: "npm run dev",
-    url: "http://127.0.0.1:3000",
+    url: "http://localhost:3000",
     reuseExistingServer: !process.env.CI,
+    env: {
+      ...process.env,
+      DEMO_NOW: demoNow,
+    },
   },
 });

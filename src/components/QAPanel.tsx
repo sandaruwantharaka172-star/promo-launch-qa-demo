@@ -1,10 +1,11 @@
+const actionsUrl = "https://github.com/sandaruwantharaka172-star/promo-launch-qa-demo/actions";
+
 const checks = [
-  ["Entry window", "Date-gated"],
-  ["Form validation", "Client + server"],
-  ["Duplicate handling", "Conflict state"],
-  ["Consent", "Required terms"],
-  ["Failure recovery", "User-safe error"],
-  ["Automated coverage", "Unit + E2E"],
+  ["Entry window", "UK-local date boundary"],
+  ["Input validation", "Format + required-field checks"],
+  ["Simulated duplicate response", "Hard-coded 409 review state"],
+  ["Simulated service outage", "Hard-coded 503 review state"],
+  ["Consent UI", "Required checkbox + optional marketing"],
 ] as const;
 
 export function QAPanel() {
@@ -12,8 +13,8 @@ export function QAPanel() {
     <section className="qa-panel" aria-labelledby="qa-title">
       <div className="section-kicker">Launch evidence</div>
       <div className="section-heading-row">
-        <h2 id="qa-title">QA built into the flow, not added at the end.</h2>
-        <span className="qa-score">6 QA scenarios demonstrated</span>
+        <h2 id="qa-title">Explicit scenarios with automated evidence behind them.</h2>
+        <span className="qa-score">5 review states · automated checks</span>
       </div>
       <div className="qa-grid">
         {checks.map(([name, value]) => (
@@ -26,6 +27,7 @@ export function QAPanel() {
           </article>
         ))}
       </div>
+      <a className="qa-proof-link" href={actionsUrl}>View current GitHub Actions test runs ↗</a>
     </section>
   );
 }

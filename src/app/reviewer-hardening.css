@@ -1,0 +1,33 @@
+/* Reviewer-hardening overrides: keep evidence dense and new states readable. */
+.capability { min-height: 220px; }
+.capability h2 { margin: 34px 0 12px; }
+.delivery-topline a { color: #dceee5; font-weight: 800; }
+.qa-proof-link { display: inline-flex; margin-top: 24px; font-size: 13px; font-weight: 800; text-decoration: underline; text-underline-offset: 4px; }
+.handoff-copy > p { margin: 28px 0 0; font-size: 18px; line-height: 1.7; color: var(--muted); }
+.handoff-links { display: flex; flex-wrap: wrap; gap: 12px 18px; margin-top: 22px; }
+.handoff-links a { font-size: 13px; font-weight: 800; text-decoration: underline; text-underline-offset: 4px; }
+
+.campaign-conditions { max-width: 570px; margin: 18px 0; padding: 16px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.05); border-radius: 16px; }
+.campaign-conditions strong, .campaign-conditions span { display: block; }
+.campaign-conditions strong { font-size: 13px; margin-bottom: 7px; }
+.campaign-conditions span { font-size: 12px; line-height: 1.5; color: #aeb7c2; margin-top: 4px; }
+.campaign-legal-links { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 10px; }
+.campaign-legal-links a { font-size: 12px; color: #f3d2c5; text-decoration: underline; text-underline-offset: 3px; }
+.demo-legal-copy { max-width: 570px; margin-top: 26px; }
+.demo-legal-copy details { border-top: 1px solid rgba(255,255,255,.09); padding: 14px 0; }
+.demo-legal-copy summary { cursor: pointer; font-weight: 800; font-size: 13px; }
+.demo-legal-copy p { color: #9eabb9; line-height: 1.55; font-size: 13px; }
+
+.scenario-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px; background: #f6f7f8; border: 1px solid #e1e3e7; border-radius: 14px; margin-bottom: 18px; }
+.scenario-tools > span { width: 100%; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; font-weight: 800; color: #7b8088; }
+.scenario-tools button { border: 1px solid #d8dbe0; background: white; border-radius: 999px; padding: 7px 10px; font-size: 12px; font-weight: 800; cursor: pointer; }
+.scenario-tools button:disabled { opacity: .5; cursor: not-allowed; }
+.legal-hint { display: block; margin: 7px 0 0 28px; color: #858a92; font-size: 11px; line-height: 1.45; }
+.legal-hint a { text-decoration: underline; text-underline-offset: 2px; }
+.success-ring.neutral { background: #e8edf5; color: #52627c; font-size: 22px; }
+
+@media (max-width: 600px) {
+  .campaign-conditions, .status, .campaign-steps, .demo-legal-copy { max-width: 100%; }
+  .scenario-tools button { flex: 1 1 auto; }
+  .handoff-links { flex-direction: column; gap: 10px; }
+}
