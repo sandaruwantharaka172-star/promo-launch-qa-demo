@@ -13,7 +13,7 @@ export function QAPanel() {
       <div className="section-kicker">Launch evidence</div>
       <div className="section-heading-row">
         <h2 id="qa-title">QA built into the flow, not added at the end.</h2>
-        <span className="qa-score">6 / 6 checks represented</span>
+        <span className="qa-score">6 QA scenarios demonstrated</span>
       </div>
       <div className="qa-grid">
         {checks.map(([name, value]) => (
