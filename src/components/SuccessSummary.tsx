@@ -1,31 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 const STORAGE_KEY = "launchproof:last-entry";
 const REFERENCE_PATTERN = /^DEMO-[A-Z0-9]{8}$/;
 
+function subscribe() {
+  return () => {};
+}
+
+function getReferenceSnapshot(): string | null {
+  if (typeof window === "undefined") return null;
+  const candidate = window.sessionStorage.getItem(STORAGE_KEY);
+  return candidate && REFERENCE_PATTERN.test(candidate) ? candidate : null;
+}
+
+function getServerSnapshot(): null {
+  return null;
+}
+
 export function SuccessSummary() {
-  const [reference, setReference] = useState<string | null>(null);
-  const [checked, setChecked] = useState(false);
-
-  useEffect(() => {
-    const candidate = window.sessionStorage.getItem(STORAGE_KEY);
-    if (candidate && REFERENCE_PATTERN.test(candidate)) {
-      setReference(candidate);
-    }
-    setChecked(true);
-  }, []);
-
-  if (!checked) {
-    return (
-      <section className="success-card" aria-live="polite">
-        <span className="eyebrow">Demo confirmation</span>
-        <h1>Checking demo state…</h1>
-      </section>
-    );
-  }
+  const reference = useSyncExternalStore(subscribe, getReferenceSnapshot, getServerSnapshot);
 
   if (!reference) {
     return (
