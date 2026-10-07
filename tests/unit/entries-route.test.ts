@@ -31,6 +31,11 @@ describe("POST /api/entries", () => {
     expect(response.status).toBe(400);
   });
 
+  it("rejects a valid JSON null payload without throwing", async () => {
+    const response = await POST(requestWith("null"));
+    expect(response.status).toBe(400);
+  });
+
   it("rejects invalid entry data at the API boundary", async () => {
     const response = await POST(requestWith({ ...validPayload, email: "invalid" }));
     expect(response.status).toBe(422);
