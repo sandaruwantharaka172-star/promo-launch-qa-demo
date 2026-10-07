@@ -4,12 +4,12 @@ export const CAMPAIGN = {
   name: "Golden Hour Getaway",
   brand: "Northline Coffee Co.",
   start: new Date("2026-10-01T00:00:00+01:00"),
-  end: new Date("2026-12-24T23:59:59+00:00"),
+  end: new Date("2026-12-24T23:59:59.999+00:00"),
   prize: "A two-night city escape for two",
 } as const;
 
 function getDefaultNow(): Date {
-  const injected = process.env.DEMO_NOW?.trim();
+  const injected = process.env.ALLOW_DEMO_CLOCK === "1" ? process.env.DEMO_NOW?.trim() : undefined;
 
   if (injected) {
     const parsed = new Date(injected);
