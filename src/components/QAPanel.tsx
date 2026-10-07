@@ -1,4 +1,4 @@
-const actionsUrl = "https://github.com/sandaruwantharaka172-star/promo-launch-qa-demo/actions";
+const actionsUrl = "https://github.com/sandaruwantharaka172-star/promo-launch-qa-demo/actions/workflows/quality.yml?query=branch%3Amain";
 
 const checks = [
   ["Entry window", "UK-local date boundary"],

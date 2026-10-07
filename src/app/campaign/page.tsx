@@ -53,7 +53,7 @@ export default function CampaignPage() {
           </ol>
 
           <div className="demo-legal-copy">
-            <details id="demo-terms">
+            <details id="demo-terms" open>
               <summary>Demo terms placeholder</summary>
               <p>This section demonstrates where agency-approved full promotion terms would be available before entry. It is intentionally not presented as legal advice or an approved set of terms.</p>
             </details>

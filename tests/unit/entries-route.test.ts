@@ -19,10 +19,12 @@ function requestWith(body: string | object): Request {
 
 describe("POST /api/entries", () => {
   beforeEach(() => {
+    process.env.ALLOW_DEMO_CLOCK = "1";
     process.env.DEMO_NOW = "2026-10-07T10:00:00Z";
   });
 
   afterEach(() => {
+    delete process.env.ALLOW_DEMO_CLOCK;
     delete process.env.DEMO_NOW;
   });
 

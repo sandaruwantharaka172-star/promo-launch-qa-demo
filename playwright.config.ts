@@ -17,12 +17,13 @@ export default defineConfig({
     { name: "mobile-chromium", use: { ...devices["Pixel 5"] } },
   ],
   webServer: {
-    command: "npm run dev",
+    command: process.env.CI ? "npm run build && npm run start" : "npm run dev",
     url: "http://localhost:3000",
     reuseExistingServer: !process.env.CI,
     env: {
       ...process.env,
       DEMO_NOW: demoNow,
+      ALLOW_DEMO_CLOCK: "1",
     },
   },
 });
