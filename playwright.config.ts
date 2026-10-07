@@ -1,5 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const demoNow = process.env.DEMO_NOW ?? "2026-10-07T10:00:00Z";
+
 export default defineConfig({
   testDir: "./tests/e2e",
   fullyParallel: true,
@@ -17,5 +19,9 @@ export default defineConfig({
     command: "npm run dev",
     url: "http://127.0.0.1:3000",
     reuseExistingServer: !process.env.CI,
+    env: {
+      ...process.env,
+      DEMO_NOW: demoNow,
+    },
   },
 });
