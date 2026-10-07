@@ -50,7 +50,7 @@ export default function Home() {
         <aside className="delivery-card" aria-label="Delivery summary">
           <div className="delivery-topline">
             <span>Launch-readiness sample</span>
-            <span className="live-chip">Ready for review</span>
+            <span className="live-chip">CI verified</span>
           </div>
           <div className="delivery-window">
             <span>Approved mechanic</span>
