@@ -1,21 +1,26 @@
 import Link from "next/link";
 import { QAPanel } from "@/components/QAPanel";
 
+const repoUrl = "https://github.com/sandaruwantharaka172-star/promo-launch-qa-demo";
+const actionsUrl = `${repoUrl}/actions`;
+const handoffUrl = `${repoUrl}/blob/main/SAMPLE-HANDOFF.md`;
+const issueReportUrl = `${repoUrl}/blob/main/SAMPLE-ISSUE-REPORT.md`;
+
 const capabilities = [
   {
     index: "01",
     title: "Mechanic implementation",
-    copy: "Translate an approved promotion mechanic into a clear, testable consumer flow using existing project constraints.",
+    copy: "Translate an approved promotion mechanic into a clear, testable consumer flow inside the existing project and platform constraints.",
   },
   {
     index: "02",
     title: "Edge-case handling",
-    copy: "Treat dates, duplicate entries, invalid data, consent and service failures as product states—not surprises after launch.",
+    copy: "Model date boundaries, duplicate entries, invalid data, consent and service failures as explicit reviewable states.",
   },
   {
     index: "03",
     title: "Launch evidence",
-    copy: "Pair manual QA thinking with automated unit and browser tests so acceptance is objective and reviewable.",
+    copy: "Pair manual QA thinking with automated domain, API and browser checks so acceptance criteria are visible before launch.",
   },
 ] as const;
 
@@ -28,29 +33,30 @@ export default function Home() {
           <span>Launchproof</span>
         </Link>
         <div className="header-meta">
-          <span className="demo-pill">Independent demo</span>
-          <a href="https://github.com/sandaruwantharaka172-star/promo-launch-qa-demo">GitHub</a>
+          <span className="demo-pill">Independent capability sample</span>
+          <a href={repoUrl}>GitHub</a>
         </div>
       </header>
 
       <section className="hero shell">
         <div className="hero-copy">
-          <span className="eyebrow">Campaign implementation / QA demonstration</span>
+          <span className="eyebrow">External implementation + QA for promotional agencies</span>
           <h1>Promotional campaigns should fail in testing, not in market.</h1>
           <p>
-            A compact demonstration of how I approach a bounded campaign implementation: approved mechanic in, testable flow out, with edge cases and launch-readiness evidence built into delivery.
+            I build and QA consumer entry flows for campaigns your team has already approved. The agency/client keeps strategy, creative, the client relationship, legal/compliance decisions, prize administration and every third-party account.
           </p>
           <div className="hero-actions">
-            <Link className="primary-button" href="/campaign">Run the consumer flow</Link>
+            <Link className="primary-button" href="/campaign">Run the sample flow</Link>
             <a className="secondary-button" href="#evidence">See QA evidence</a>
+            <a className="secondary-button" href={repoUrl}>View QA code / repo</a>
           </div>
-          <p className="honesty-note">Fictional campaign. Built as a capability sample—not presented as client work.</p>
+          <p className="honesty-note">Fictional campaign. Built as a capability sample and not presented as paid client work.</p>
         </div>
 
         <aside className="delivery-card" aria-label="Delivery summary">
           <div className="delivery-topline">
-            <span>Launch-readiness sample</span>
-            <span className="live-chip">CI verified</span>
+            <span>Campaign implementation sample</span>
+            <a className="live-chip" href={actionsUrl}>View test runs ↗</a>
           </div>
           <div className="delivery-window">
             <span>Approved mechanic</span>
@@ -58,17 +64,16 @@ export default function Home() {
           </div>
           <div className="delivery-grid">
             <div><small>Implementation</small><strong>Next.js + TypeScript</strong></div>
-            <div><small>Validation</small><strong>Client + API</strong></div>
-            <div><small>Coverage</small><strong>Vitest + Playwright</strong></div>
-            <div><small>Infrastructure</small><strong>$0 demo stack</strong></div>
+            <div><small>Validation</small><strong>Client + API boundary</strong></div>
+            <div><small>Testing</small><strong>Vitest + Playwright</strong></div>
+            <div><small>Handoff</small><strong>Branch + PR + CI</strong></div>
           </div>
-          <div className="launch-bar"><span /></div>
-          <div className="delivery-foot"><span>Scope bounded</span><span>No production data</span><span>Reviewable states</span></div>
+          <div className="delivery-foot"><span>Bounded scope</span><span>No production entrant data</span><span>Reviewable states</span></div>
         </aside>
       </section>
 
       <section className="capability-section shell">
-        <div className="section-kicker">What this proves</div>
+        <div className="section-kicker">What this demonstrates</div>
         <div className="capability-grid">
           {capabilities.map((item) => (
             <article className="capability" key={item.index}>
@@ -85,16 +90,23 @@ export default function Home() {
       <section className="handoff-section shell">
         <div>
           <span className="eyebrow">Designed for a clean handoff</span>
-          <h2>Small scope. Visible assumptions. Objective acceptance.</h2>
+          <h2>Small scope. Visible assumptions. Reviewable acceptance.</h2>
         </div>
-        <p>
-          This sample intentionally avoids a database, paid services and invented client claims. The repository documents assumptions, QA checks, test coverage and the point where production integrations would begin.
-        </p>
+        <div className="handoff-copy">
+          <p>
+            No production entrant data is used in this demo. In a real engagement, data access, retention, consent, monitoring and security controls would be implemented against the agency/client&apos;s approved requirements and existing platform. This sample does not claim GDPR, CAP or legal approval.
+          </p>
+          <div className="handoff-links">
+            <a href={handoffUrl}>Sample handoff document ↗</a>
+            <a href={issueReportUrl}>Sample issue report ↗</a>
+            <a href={repoUrl + "/issues"}>Tracked issues ↗</a>
+          </div>
+        </div>
       </section>
 
       <footer className="site-footer shell">
-        <span>Launchproof demo · 2026</span>
-        <span>Built to demonstrate implementation discipline, not campaign strategy.</span>
+        <span>Launchproof capability demo · 2026</span>
+        <span>Independent implementation + QA sample.</span>
       </footer>
     </main>
   );
