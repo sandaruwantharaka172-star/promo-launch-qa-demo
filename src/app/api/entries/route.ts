@@ -11,15 +11,19 @@ export async function POST(request: Request) {
     );
   }
 
-  let payload: EntryPayload;
+  let parsed: unknown;
   try {
-    payload = (await request.json()) as EntryPayload;
+    parsed = await request.json();
   } catch {
     return NextResponse.json({ message: "Invalid request body." }, { status: 400 });
   }
 
+  if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+    return NextResponse.json({ message: "Invalid request body." }, { status: 400 });
+  }
+
+  const payload = parsed as Partial<EntryPayload>;
   const normalized: EntryPayload = {
-    ...payload,
     fullName: typeof payload.fullName === "string" ? payload.fullName.trim() : "",
     email: typeof payload.email === "string" ? payload.email.trim().toLowerCase() : "",
     receiptCode: typeof payload.receiptCode === "string" ? normalizeReceiptCode(payload.receiptCode) : "",
