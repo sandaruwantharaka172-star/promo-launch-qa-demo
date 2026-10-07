@@ -69,7 +69,7 @@ export function EntryForm({ disabled = false }: { disabled?: boolean }) {
       window.sessionStorage.setItem(STORAGE_KEY, result.entryId);
       router.push("/campaign/success");
     } catch {
-      setApiError("The entry service is temporarily unavailable. Your details were not submitted.");
+      setApiError("We couldn’t confirm the submission. Please try again.");
     } finally {
       setSubmitting(false);
     }
@@ -82,7 +82,7 @@ export function EntryForm({ disabled = false }: { disabled?: boolean }) {
           <span className="eyebrow">Consumer entry</span>
           <h2>Enter the draw</h2>
         </div>
-        <span className="secure-note">Demo · no data stored</span>
+        <span className="secure-note">Demo · no app database</span>
       </div>
 
       <div className="scenario-tools" aria-label="Quick demo scenarios">
@@ -162,7 +162,7 @@ export function EntryForm({ disabled = false }: { disabled?: boolean }) {
         {disabled ? "Entries unavailable" : submitting ? "Submitting…" : "Submit entry"}
       </button>
 
-      <p className="privacy-note">Demonstration only. No production database or personal-data storage is connected.</p>
+      <p className="privacy-note">Demonstration only. Submissions are processed by a mock endpoint and are not saved to an application database.</p>
     </form>
   );
 }
