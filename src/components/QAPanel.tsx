@@ -2,10 +2,10 @@ const actionsUrl = "https://github.com/sandaruwantharaka172-star/promo-launch-qa
 
 const checks = [
   ["Entry window", "UK-local date boundary"],
-  ["Form validation", "Client + API boundary"],
-  ["Duplicate handling", "409 conflict state"],
-  ["Service outage", "503 recovery state"],
-  ["Consent", "Required terms + optional marketing"],
+  ["Input validation", "Format + required-field checks"],
+  ["Simulated duplicate response", "Hard-coded 409 review state"],
+  ["Simulated service outage", "Hard-coded 503 review state"],
+  ["Consent UI", "Required checkbox + optional marketing"],
 ] as const;
 
 export function QAPanel() {
@@ -14,7 +14,7 @@ export function QAPanel() {
       <div className="section-kicker">Launch evidence</div>
       <div className="section-heading-row">
         <h2 id="qa-title">Explicit scenarios with automated evidence behind them.</h2>
-        <span className="qa-score">5 scenarios · CI-tested</span>
+        <span className="qa-score">5 review states · automated checks</span>
       </div>
       <div className="qa-grid">
         {checks.map(([name, value]) => (
