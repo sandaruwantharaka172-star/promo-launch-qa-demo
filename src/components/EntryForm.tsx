@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { hasValidationErrors, normalizeReceiptCode, validateEntry } from "@/lib/validation";
 import type { EntryPayload, FieldErrors } from "@/lib/types";
 
+const STORAGE_KEY = "launchproof:last-entry";
+
 const initialForm: EntryPayload = {
   fullName: "",
   email: "",
@@ -23,6 +25,18 @@ export function EntryForm({ disabled = false }: { disabled?: boolean }) {
   function update<K extends keyof EntryPayload>(key: K, value: EntryPayload[K]) {
     setForm((current) => ({ ...current, [key]: value }));
     setErrors((current) => ({ ...current, [key]: undefined }));
+    setApiError("");
+  }
+
+  function fillScenario(receiptCode: string) {
+    setForm({
+      fullName: "Alex Morgan",
+      email: "alex@example.com",
+      receiptCode,
+      termsAccepted: true,
+      marketingOptIn: false,
+    });
+    setErrors({});
     setApiError("");
   }
 
@@ -52,7 +66,8 @@ export function EntryForm({ disabled = false }: { disabled?: boolean }) {
         return;
       }
 
-      router.push(`/campaign/success?entry=${encodeURIComponent(result.entryId)}`);
+      window.sessionStorage.setItem(STORAGE_KEY, result.entryId);
+      router.push("/campaign/success");
     } catch {
       setApiError("The entry service is temporarily unavailable. Your details were not submitted.");
     } finally {
@@ -64,10 +79,17 @@ export function EntryForm({ disabled = false }: { disabled?: boolean }) {
     <form className="entry-form" onSubmit={handleSubmit} noValidate>
       <div className="form-heading">
         <div>
-          <span className="eyebrow">Step 2 of 2</span>
+          <span className="eyebrow">Consumer entry</span>
           <h2>Enter the draw</h2>
         </div>
         <span className="secure-note">Demo · no data stored</span>
+      </div>
+
+      <div className="scenario-tools" aria-label="Quick demo scenarios">
+        <span>Quick review</span>
+        <button disabled={disabled} onClick={() => fillScenario("GH-482910")} type="button">Success</button>
+        <button disabled={disabled} onClick={() => fillScenario("USED-2026")} type="button">Duplicate</button>
+        <button disabled={disabled} onClick={() => fillScenario("ERROR-500")} type="button">Outage</button>
       </div>
 
       <label className="field">
@@ -77,7 +99,7 @@ export function EntryForm({ disabled = false }: { disabled?: boolean }) {
           disabled={disabled}
           name="fullName"
           onChange={(e) => update("fullName", e.target.value)}
-          placeholder="Alex Morgan"
+          placeholder="e.g. Alex Morgan"
           value={form.fullName}
         />
         {errors.fullName && <small role="alert">{errors.fullName}</small>}
@@ -91,7 +113,7 @@ export function EntryForm({ disabled = false }: { disabled?: boolean }) {
           disabled={disabled}
           name="email"
           onChange={(e) => update("email", e.target.value)}
-          placeholder="alex@example.com"
+          placeholder="e.g. alex@example.com"
           type="email"
           value={form.email}
         />
@@ -106,10 +128,9 @@ export function EntryForm({ disabled = false }: { disabled?: boolean }) {
           disabled={disabled}
           name="receiptCode"
           onChange={(e) => update("receiptCode", e.target.value)}
-          placeholder="GH-482910"
+          placeholder="e.g. GH-482910"
           value={form.receiptCode}
         />
-        <em>Demo edge cases: USED-2026 returns duplicate; ERROR-500 simulates an outage.</em>
         {errors.receiptCode && <small role="alert">{errors.receiptCode}</small>}
       </label>
 
@@ -120,8 +141,9 @@ export function EntryForm({ disabled = false }: { disabled?: boolean }) {
           onChange={(e) => update("termsAccepted", e.target.checked)}
           type="checkbox"
         />
-        <span>I confirm I am eligible and accept the promotion terms.</span>
+        <span>I confirm I am 18+, a UK resident and accept the demo promotion terms.</span>
       </label>
+      <span className="legal-hint">Placeholder eligibility wording for the capability demo. Final wording would come from the agency/client legal owner. <a href="#demo-terms">View demo terms.</a></span>
       {errors.termsAccepted && <small className="standalone-error" role="alert">{errors.termsAccepted}</small>}
 
       <label className="checkbox-row optional">
@@ -131,7 +153,7 @@ export function EntryForm({ disabled = false }: { disabled?: boolean }) {
           onChange={(e) => update("marketingOptIn", e.target.checked)}
           type="checkbox"
         />
-        <span>Send me occasional brand updates. Optional.</span>
+        <span>Email me news and offers from Northline Coffee Co. Optional. Unsubscribe any time.</span>
       </label>
 
       {apiError && <div className="api-error" role="alert">{apiError}</div>}
