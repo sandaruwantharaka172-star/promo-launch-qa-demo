@@ -47,7 +47,7 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <Link className="primary-button" href="/campaign">Run the sample flow</Link>
-            <a className="secondary-button" href="#evidence">See QA evidence</a>
+            <a className="secondary-button" href={actionsUrl}>View passing checks</a>
             <a className="secondary-button" href={repoUrl}>View QA code / repo</a>
           </div>
           <p className="honesty-note">Fictional campaign. Built as a capability sample and not presented as paid client work.</p>
@@ -68,7 +68,7 @@ export default function Home() {
             <div><small>Testing</small><strong>Vitest + Playwright</strong></div>
             <div><small>Handoff</small><strong>Branch + PR + CI</strong></div>
           </div>
-          <div className="delivery-foot"><span>Bounded scope</span><span>No production entrant data</span><span>Reviewable states</span></div>
+          <div className="delivery-foot"><span>Bounded scope</span><span>No application database</span><span>Reviewable states</span></div>
         </aside>
       </section>
 
@@ -94,7 +94,7 @@ export default function Home() {
         </div>
         <div className="handoff-copy">
           <p>
-            No production entrant data is used in this demo. In a real engagement, data access, retention, consent, monitoring and security controls would be implemented against the agency/client&apos;s approved requirements and existing platform. This sample does not claim GDPR, CAP or legal approval.
+            This demo uses fictional details and does not save submissions to an application database. In a real engagement, data access, retention, consent, monitoring and security controls would be implemented against the agency/client&apos;s approved requirements and existing platform. This sample does not claim GDPR, CAP or legal approval.
           </p>
           <div className="handoff-links">
             <a href={handoffUrl}>Sample handoff document ↗</a>
@@ -106,7 +106,7 @@ export default function Home() {
 
       <footer className="site-footer shell">
         <span>Launchproof capability demo · 2026</span>
-        <span>Independent implementation + QA sample.</span>
+        <span>Have an approved task? Reply to the outreach email with the brief for a scope review.</span>
       </footer>
     </main>
   );
