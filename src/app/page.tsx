@@ -2,7 +2,7 @@ import Link from "next/link";
 import { QAPanel } from "@/components/QAPanel";
 
 const repoUrl = "https://github.com/sandaruwantharaka172-star/promo-launch-qa-demo";
-const actionsUrl = `${repoUrl}/actions`;
+const actionsUrl = `${repoUrl}/actions/workflows/quality.yml?query=branch%3Amain`;
 const handoffUrl = `${repoUrl}/blob/main/SAMPLE-HANDOFF.md`;
 const issueReportUrl = `${repoUrl}/blob/main/SAMPLE-ISSUE-REPORT.md`;
 
