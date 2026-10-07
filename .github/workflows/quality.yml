@@ -13,7 +13,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install
+      - name: Generate deterministic dependency lock
+        run: npm install --package-lock-only --ignore-scripts
+      - uses: actions/upload-artifact@v4
+        with:
+          name: generated-package-lock
+          path: package-lock.json
+      - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run test:unit
@@ -26,6 +32,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: npm install
+      - name: Generate deterministic dependency lock
+        run: npm install --package-lock-only --ignore-scripts
+      - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
