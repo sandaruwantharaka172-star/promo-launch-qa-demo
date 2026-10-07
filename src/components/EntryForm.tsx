@@ -52,6 +52,7 @@ export function EntryForm({ disabled = false }: { disabled?: boolean }) {
 
     setSubmitting(true);
     setApiError("");
+    window.sessionStorage.removeItem(STORAGE_KEY);
 
     try {
       const response = await fetch("/api/entries", {
