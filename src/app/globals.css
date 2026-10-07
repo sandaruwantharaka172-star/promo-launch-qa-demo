@@ -151,9 +151,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .success-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
 .success-actions .primary-button { background: white; color: #111827; }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .hero, .campaign-shell, .handoff-section { grid-template-columns: 1fr; gap: 46px; }
   .hero { padding-top: 64px; }
+  .hero-copy { max-width: 820px; }
+  .delivery-card { max-width: 720px; width: 100%; }
   .delivery-card { transform: none; }
   .campaign-shell { padding-top: 45px; }
   .campaign-form-wrap { position: static; }
@@ -166,7 +168,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .site-header, .campaign-header { min-height: 68px; }
   .header-meta .demo-pill { display: none; }
   .hero { padding: 50px 0 60px; }
-  .hero h1 { font-size: 52px; }
+  .hero h1 { font-size: clamp(44px, 12vw, 58px); line-height: .96; }
+  .hero-copy > p { font-size: 17px; }
+  .header-meta { gap: 12px; font-size: 13px; }
+  .delivery-foot { flex-wrap: wrap; }
+  .qa-score { white-space: normal; }
+  .campaign-story h1 { font-size: clamp(48px, 13vw, 62px); }
   .delivery-card, .qa-panel, .entry-form { border-radius: 22px; padding: 22px; }
   .delivery-grid { grid-template-columns: 1fr; }
   .capability-section { padding: 50px 0; }
@@ -174,8 +181,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .handoff-section { padding: 46px 0 70px; }
   .handoff-section h2 { font-size: 38px; }
   .site-footer { align-items: flex-start; flex-direction: column; justify-content: center; padding: 22px 0; }
-  .campaign-story h1 { font-size: 56px; }
-  .campaign-brand { margin-bottom: 32px; }
+    .campaign-brand { margin-bottom: 32px; }
   .form-heading { flex-direction: column; }
 }
 
